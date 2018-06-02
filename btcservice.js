@@ -61,7 +61,7 @@ async function initializeService() {
         return;
     }
     curPrice = priceobj;
-    var secondsToQuery = 20;
+    var secondsToQuery = 30;
     console.log('Running btc alert service, checking bitcoin price every ' + secondsToQuery + ' seconds');
     setInterval(runServiceLoop, 1000 * secondsToQuery);
 }
