@@ -10,6 +10,7 @@
   "author": "kurtmueller42@gmail.com",
   "license": "AGPL-3.0",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3",
     "pg": "^7.4.3"
   },

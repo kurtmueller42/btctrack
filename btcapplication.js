@@ -6,8 +6,8 @@ var emailservice = require('./emailservice');
 
 
 
-function handleBtcPriceChange() {
-
+function handleBtcPriceChange(pricechange) {
+    console.log('Handling a price change from ' + pricechange.oldPrice + ' to ' + pricechange.newPrice);
 }
 
 
