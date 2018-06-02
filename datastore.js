@@ -1,7 +1,7 @@
 
 // Database
 var pg = require('pg');
-var conString = "postgres://YourUserName:YourPassword@localhost:5432/YourDatabase";
+var conString = "postgres://postgres:test@localhost:5432/btc";
 
 
 
