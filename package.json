@@ -4,7 +4,8 @@
   "description": "Tracks and manages alerts for bitcoin price",
   "main": "run.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node run.js",
+    "test": "node test.js"
   },
   "author": "kurtmueller42@gmail.com",
   "license": "AGPL-3.0",
