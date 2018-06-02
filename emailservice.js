@@ -6,6 +6,6 @@ module.exports = {
     TriggerThresholdEmail: function(oldPrice, newPrice, alert) {
         // TODO
         // For now console log
-        console.log('This is an alert for ' + alert.email + ' that the price changed from ' + oldPrice + ' to ' + newPrice);
+        console.log('This is an alert for ' + alert.email_address + ' that the price changed from ' + oldPrice + ' to ' + newPrice);
     }
 }
