@@ -1,0 +1,12 @@
+install the node package:
+    npm install
+
+install the database server:
+    1. create a postgresql database 'btc' listening on 127.0.0.1. Run the sql/create_db.sql script on that database.
+    2. to run the emails, you will need to export credentials:
+        $export EMAIL="emailhere@gmail.com"
+        $export PASS="passwordhere"
+    3. run it:
+        $ npm start
+       or, alternatively, run it generating random btc values from 1 to 10:
+        $ npm test
