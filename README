@@ -6,6 +6,7 @@ install the database server:
     2. to run the emails, you will need to export credentials:
         $export EMAIL="emailhere@gmail.com"
         $export PASS="passwordhere"
+        (note: email functionality actually untested because I didn't want play around with my real gmail account credentials and don't have a throwaway)
     3. run it:
         $ npm start
        or, alternatively, run it generating random btc values from 1 to 10:
