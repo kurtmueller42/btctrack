@@ -1,2 +1,2 @@
 var server = require('./server');
-server.MakeServer();
+server.MakeTestServer();

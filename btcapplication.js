@@ -1,6 +1,6 @@
-// 
+// The btc tracking application business logic level
 
-var btcservice = require('./btcservice');
+var btcservice;
 var datastore = require('./datastore');
 var emailservice = require('./emailservice');
 
@@ -18,6 +18,12 @@ async function handleBtcPriceChange(pricechange) {
 
 module.exports = {
     initialize : function () {
+        btcservice = require('./btcservice');;
+        btcservice.AddListener(handleBtcPriceChange);
+    },
+
+    initializeTest : function () {
+        btcservice = require('./btcservicetestharness');
         btcservice.AddListener(handleBtcPriceChange);
     },
 
