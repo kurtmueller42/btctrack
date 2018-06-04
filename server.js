@@ -8,7 +8,7 @@ module.exports = { MakeServer: function () {
 
     application.initialize();
 
-    app.use('/btc', router.GetRouter());
+    app.use('/btc', router.GetRouter(application));
     app.listen(port);
     console.log('Listening now');
 

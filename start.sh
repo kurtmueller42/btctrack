@@ -1,1 +1,1 @@
-scp *.js ubuntu@momobot.net:~/btctrack/ && ssh ubuntu@momobot.net 'cd btctrack; npm start'
+scp *.js ubuntu@momobot.net:~/btctrack/ && ssh ubuntu@momobot.net 'killall node; cd btctrack; npm start'
