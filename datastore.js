@@ -21,6 +21,25 @@ function dataAlertToJavascriptAlert(dataAlert) {
     return dataAlert;
 }
 
+function javascriptAlertToDataAlert(javascriptAlert) {
+    var trigger_up;
+    var trigger_down;
+    if (javascriptAlert.direction == 'UP') {
+        trigger_up = true;
+        trigger_down = false;
+    } else if (javascriptAlert.direction == 'DOWN') {
+        trigger_up = false;
+        trigger_down = true;
+    } else if (javascriptAlert.direction == 'BOTH') {
+        trigger_up = true;
+        trigger_down = true;
+    }
+    javascriptAlert.trigger_up = trigger_up;
+    javascriptAlert.trigger_down = trigger_down;
+    javascriptAlert.direction = undefined;
+    return javascriptAlert;
+}
+
 
 module.exports = {
 
@@ -31,7 +50,7 @@ module.exports = {
             var query = await client.query('SELECT * from alert');
             return query.rows.map(dataAlert => dataAlertToJavascriptAlert(dataAlert));    
         } catch (err) {
-            console.log(err.stack);
+            console.log(err);
             return null;
         }
     },
@@ -64,25 +83,14 @@ module.exports = {
     // Creates alert from object provided. Ignores ID field if set 
     CreateAlert: async function(alert) {
         // Use prepared statements for easy sanitization
-        var trigger_up;
-        var trigger_down;
-        if (alert.direction == 'UP') {
-            trigger_up = true;
-            trigger_down = false;
-        } else if (alert.direction == 'DOWN') {
-            trigger_up = false;
-            trigger_down = true;
-        } else if (alert.direction == 'BOTH') {
-            trigger_up = true;
-            trigger_down = true;
-        }
+        alert = javascriptAlertToDataAlert(alert);
         const query = {
             text : 'INSERT into alert (threshold, email_address, trigger_up, trigger_down) values ($1, $2, $3, $4)',
-            values : [alert.threshold, alert.email_address, trigger_up, trigger_down]
+            values : [alert.threshold, alert.email_address, alert.trigger_up, alert.trigger_down]
         };
         try {
             var res = await client.query(query);
-            console.log(res);
+            return res.rowCount;
         } catch (err) {
             console.log(err.stack);
             return null;
@@ -91,12 +99,35 @@ module.exports = {
 
     // Deletes alert by ID
     DeleteAlert: async function(alertId) {
-
+        // Use prepared statements for easy sanitization
+        const query = {
+            text : 'DELETE from alert where id = $1',
+            values : [alertId]
+        };
+        try {
+            var res = await client.query(query);
+            return res.rowCount;
+        } catch (err) {
+            console.log(err.stack);
+            return null;
+        }
     },
 
     // updates by the ID on the alert
     UpdateAlert: async function(alert) {
-
+        // Use prepared statements for easy sanitization
+        alert = javascriptAlertToDataAlert(alert);
+        const query = {
+            text : 'UPDATE alert set threshold = $1, email_address = $2, trigger_up = $3, trigger_down = $4 where id = $5',
+            values : [alert.threshold, alert.email_address, alert.trigger_up, alert.trigger_down, alert.id]
+        };
+        try {
+            var res = await client.query(query);
+            return res.rowCount;
+        } catch (err) {
+            console.log(err.stack);
+            return null;
+        }
     }
 
 }

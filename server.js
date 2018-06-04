@@ -4,6 +4,7 @@ module.exports = { MakeServer: function () {
     var application = require('./btcapplication');
     var router = require('./btccontroller');
     var app = express();
+    app.use(express.json());
     var port = 8080;
 
     application.initialize();

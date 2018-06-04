@@ -23,18 +23,19 @@ module.exports = {
 
     // Normally the service layer adds business logic before calling the DAO layer but this is all basically straight crud so we essentially wrap the datastore
     createAlert : function(alert) {
-
+        // We assume the alert object was validated already by the controller
+        return datastore.CreateAlert(alert);
     },
 
-    getAlerts : function(alert) {
+    getAlerts : function() {
         return datastore.GetAllAlerts();
     },
 
     deleteAlert : function(alertId) {
-
+        return datastore.DeleteAlert(alertId);
     },
 
     updateAlert : function(alert) {
-
+        return datastore.UpdateAlert(alert);
     }
 }
